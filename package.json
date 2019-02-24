@@ -17,6 +17,7 @@
   "dependencies": {
     "async": "2.1.2",
     "bitfinex-api-node": "^1.2.1",
+    "buzzex-gekko-npm": "^1.0.1",
     "co-fs": "^1.2.0",
     "commander": "^2.13.0",
     "gekko": "0.0.9",
