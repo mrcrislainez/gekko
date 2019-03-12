@@ -35,18 +35,7 @@ const Trader = function(config) {
 }
 
 const recoverableErrors = [
-  'SOCKETTIMEDOUT',
-  'TIMEDOUT',
-  'CONNRESET',
-  'CONNREFUSED',
-  'NOTFOUND',
-  'Service:Unavailable',
-  'Request timed out',
-  'Empty response',
-  'API:Invalid nonce',
-  'General:Temporary lockout',
-  'Response code 525',
-  'Service:Busy'
+  
 ];
 
 // errors that might mean
@@ -160,7 +149,7 @@ Trader.prototype.getPortfolio = function(callback) {
 // It does not take into account volume discounts.
 // Base maker fee is 0.16%, taker fee is 0.26%.
 Trader.prototype.getFee = function(callback) {
-  const makerFee = 0.16;
+  const makerFee = 0.02;
   callback(undefined, makerFee / 100);
 };
 
@@ -245,27 +234,6 @@ Trader.prototype.getOrder = function(order, callback) {
     const price = parseFloat( data.orderInfo[ order ].rate );
     const amount = parseFloat( data.orderInfo[ order ].amount );
     const date = moment.unix( data.orderInfo[ order ].timestamp_created );
-
-    // TODO: figure out fees, kraken is reporting 0 fees:
-    // { 'OF6L2D-6LIKD-4OOHR7':
-    //   { refid: null,
-    //     userref: 0,
-    //     status: 'closed',
-    //     reason: null,
-    //     opentm: 1530694339.8116,
-    //     closetm: 1530694402.9572,
-    //     starttm: 0,
-    //     expiretm: 0,
-    //     descr: [Object],
-    //     vol: '0.00500000',
-    //     vol_exec: '0.00500000',
-    //     cost: '27.9',
-    //     fee: '0',
-    //     price: '5595.0',
-    //     stopprice: '0.00000',
-    //     limitprice: '0.00000',
-    //     misc: '',
-    //     oflags: 'fciq' } } }
 
     callback(undefined, {
       price,
