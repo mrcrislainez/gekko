@@ -294,7 +294,7 @@ Trader.getCapabilities = function () {
     requires: ['key', 'secret'],
     providesHistory: 'date',
     providesFullHistory: true,
-    tid: 'date',
+    tid: 'tid',
     tradable: true,
     gekkoBroker: 0.6
   };
