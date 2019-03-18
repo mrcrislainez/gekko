@@ -62,22 +62,6 @@ Trader.prototype.handleResponse = function(funcName, callback, nonMutating, payl
     }
 
     if(error) {
-      if(includes(error.message, recoverableErrors)) {
-        error.notFatal = true;
-      }
-
-      if(includes(error.message, ['Rate limit exceeded'])) {
-        error.notFatal = true;
-        error.backoffDelay = 2500;
-      }
-
-      if(nonMutating && includes(error.message, unknownResultErrors)) {
-        // this call only tried to retrieve data, safe to redo
-        error.notFatal = true;
-      }
-
-      //condition here...
-
       return callback(error);
     }
     
@@ -147,7 +131,7 @@ Trader.prototype.getPortfolio = function(callback) {
 
 // This assumes that only limit orders are being placed with standard assets pairs
 // It does not take into account volume discounts.
-// Base maker fee is 0.16%, taker fee is 0.26%.
+// Base maker fee is 0.02%.
 Trader.prototype.getFee = function(callback) {
   const makerFee = 0.02;
   callback(undefined, makerFee / 100);
